@@ -62,7 +62,6 @@ public class Order {
     //>>> Clean Arch / Port Method
     //<<< Clean Arch / Port Method
     public static void updateStatus(DeliveryStarted deliveryStarted) {
-        //implement business logic here:
 
         repository().findById(Long.valueOf(deliveryStarted.getOrderId())).ifPresent(order->{
             
