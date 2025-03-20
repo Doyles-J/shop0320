@@ -43,6 +43,12 @@ public class Delivery {
     //<<< Clean Arch / Port Method
     public static void startDelivery(OrderPlaced orderPlaced) {
         Delivery delivery = new Delivery();
+        delivery.setOrderId(String.valueOf(orderPlaced.getId()));
+        delivery.setAddress(orderPlaced.getAddress());
+        delivery.setCustomerId(orderPlaced.getCustomerId());
+        delivery.setProductId(orderPlaced.getProductId());
+        delivery.setQty(orderPlaced.getQty());
+        delivery.setStatus("배송시작");
         repository().save(delivery);
 
         DeliveryStarted deliveryStarted = new DeliveryStarted(delivery);
