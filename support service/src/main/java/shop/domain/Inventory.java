@@ -36,58 +36,31 @@ public class Inventory {
 
     //<<< Clean Arch / Port Method
     public static void decreaseInventory(DeliveryStarted deliveryStarted) {
-        //implement business logic here:
-
-        /** Example 1:  new item 
-        Inventory inventory = new Inventory();
-        repository().save(inventory);
-
-        InventoryDecreased inventoryDecreased = new InventoryDecreased(inventory);
-        inventoryDecreased.publishAfterCommit();
-        */
-
-        /** Example 2:  finding and process
-        
-
-        repository().findById(deliveryStarted.get???()).ifPresent(inventory->{
+        repository().findById(Long.valueOf(deliveryStarted.getProductId())).ifPresent(inventory->{
             
-            inventory // do something
+            inventory.setQty(inventory.getQty()-deliveryStarted.getQty());
             repository().save(inventory);
 
             InventoryDecreased inventoryDecreased = new InventoryDecreased(inventory);
             inventoryDecreased.publishAfterCommit();
 
          });
-        */
+        
 
     }
 
     //>>> Clean Arch / Port Method
     //<<< Clean Arch / Port Method
     public static void increaseInventory(DeliveryCancelled deliveryCancelled) {
-        //implement business logic here:
-
-        /** Example 1:  new item 
-        Inventory inventory = new Inventory();
-        repository().save(inventory);
-
-        InventoryIncreased inventoryIncreased = new InventoryIncreased(inventory);
-        inventoryIncreased.publishAfterCommit();
-        */
-
-        /** Example 2:  finding and process
-        
-
-        repository().findById(deliveryCancelled.get???()).ifPresent(inventory->{
+        repository().findById(Long.valueOf(deliveryCancelled.getProductId())).ifPresent(inventory->{
             
-            inventory // do something
+            inventory.setQty(inventory.getQty()+deliveryCancelled.getQty());
             repository().save(inventory);
 
             InventoryIncreased inventoryIncreased = new InventoryIncreased(inventory);
             inventoryIncreased.publishAfterCommit();
 
          });
-        */
 
     }
     //>>> Clean Arch / Port Method

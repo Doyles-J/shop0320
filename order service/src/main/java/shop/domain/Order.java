@@ -51,25 +51,11 @@ public class Order {
 
     //<<< Clean Arch / Port Method
     public static void sendMail(InventoryIncreased inventoryIncreased) {
-        //implement business logic here:
-
-        /** Example 1:  new item 
-        Order order = new Order();
-        repository().save(order);
-
-        */
-
-        /** Example 2:  finding and process
-        
-
-        repository().findById(inventoryIncreased.get???()).ifPresent(order->{
-            
-            order // do something
+        repository().findById(inventoryIncreased.getId()).ifPresent(order->{
+            order.setStatus("입고됨");
             repository().save(order);
 
-
          });
-        */
 
     }
 
@@ -78,48 +64,27 @@ public class Order {
     public static void updateStatus(DeliveryStarted deliveryStarted) {
         //implement business logic here:
 
-        /** Example 1:  new item 
-        Order order = new Order();
-        repository().save(order);
-
-        */
-
-        /** Example 2:  finding and process
-        
-
-        repository().findById(deliveryStarted.get???()).ifPresent(order->{
+        repository().findById(Long.valueOf(deliveryStarted.getOrderId())).ifPresent(order->{
             
-            order // do something
+            order.setStatus("배송시작"); // do something
             repository().save(order);
 
 
          });
-        */
+        
 
     }
 
     //>>> Clean Arch / Port Method
     //<<< Clean Arch / Port Method
     public static void updateStatus(DeliveryCancelled deliveryCancelled) {
-        //implement business logic here:
-
-        /** Example 1:  new item 
-        Order order = new Order();
-        repository().save(order);
-
-        */
-
-        /** Example 2:  finding and process
-        
-
-        repository().findById(deliveryCancelled.get???()).ifPresent(order->{
+        repository().findById(Long.valueOf(deliveryCancelled.getOrderId())).ifPresent(order->{
             
-            order // do something
+            order.setStatus("배송취소"); // do something
             repository().save(order);
 
 
          });
-        */
 
     }
     //>>> Clean Arch / Port Method
